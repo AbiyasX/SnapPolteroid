@@ -1,0 +1,8 @@
+Model Information:
+* title:	Animal Green Velvet 1780018
+* source:	https://sketchfab.com/3d-models/animal-green-velvet-1780018-37891a679b0648c296138cfb98194e28
+* author:	Twinbru (https://sketchfab.com/twinbru)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
