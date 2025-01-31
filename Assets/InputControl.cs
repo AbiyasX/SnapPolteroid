@@ -1,10 +1,9 @@
 
 using DG.Tweening;
-using System;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+
 
 public class InputControl : MonoBehaviour
 {
@@ -25,6 +24,7 @@ public class InputControl : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         initialYPosition = transform.position.y;
         inputActions = new InputSystem_Actions();
         charController = GetComponent<CharacterController>();   

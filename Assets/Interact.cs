@@ -1,17 +1,19 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Interact : MonoBehaviour
 {
     public bool Active = false;
     public bool PlayerInside = false;
     public CinemachineCamera Cam;
+    private CinemachineBrain Brain;
     private LayerMask layerMask;
     private GameObject playerGameObject;
 
     private void Awake()
     {
+        Brain = GameObject.FindWithTag("Camera").GetComponent<CinemachineBrain>();
         playerGameObject = GameObject.FindGameObjectWithTag("Player");
         layerMask = LayerMask.GetMask("Player"); 
     }
@@ -20,23 +22,41 @@ public class Interact : MonoBehaviour
     {
         if (PlayerInside && Input.GetKeyDown(KeyCode.E))
         {
-            interact();
+            CameraToggle();
         }   
     }
 
-    public void interact()
+    public void CameraToggle()
     {
         Active = !Active;
         
         if (Active)
         {
-            playerGameObject.SetActive(false);
             Cam.Priority = 1;
+            StartCoroutine(WaitForBlendToComplete(false));
         }
         else
         {
-            playerGameObject.SetActive(true);
             Cam.Priority = 0;
+            StartCoroutine(WaitForBlendToComplete(true));
+        }
+    }
+
+    private IEnumerator WaitForBlendToComplete(bool enablePlayer)
+    {
+        playerGameObject.SetActive(false);
+
+        yield return new WaitUntil(() => Brain.IsBlending); // Wait until blending starts
+        yield return new WaitUntil(() => !Brain.IsBlending); // Wait until blending finishes
+
+        if (enablePlayer)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            playerGameObject.SetActive(true);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
