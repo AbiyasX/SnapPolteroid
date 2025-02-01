@@ -15,8 +15,6 @@ public class InteractableScript : MonoBehaviour
         originalPosition = transform.position;
         originalRotation = transform.rotation;
 
-
-
         GameObject cameraObject = GameObject.FindGameObjectWithTag("Camera");
         cameraTransform = cameraObject.transform;
     }
