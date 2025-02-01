@@ -14,8 +14,6 @@ public class InputControl : MonoBehaviour
     [SerializeField] float PlayerSpeed;
     [SerializeField] CinemachineCamera cam;
 
-
-    private bool isInteract = false;
     private CharacterController charController;
     private InputSystem_Actions inputActions;
     private Vector2 inputVector;
