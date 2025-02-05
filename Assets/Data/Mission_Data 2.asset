@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e83b1afb23fd9404bbdd3cf0716ec8e8, type: 3}
-  m_Name: Mission_Data
+  m_Name: Mission_Data 2
   m_EditorClassIdentifier: 
   m_NpcHouse: {fileID: 0}
   m_Npc: {fileID: 0}
-  text_Letter: Help ang multo ay may TITE yes
+  text_Letter: Ang tite mo ay baluktot, ang betlog mo ay hugis ng ulo mo
+  text_FromLetter: Zac

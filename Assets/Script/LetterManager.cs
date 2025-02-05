@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.Utilities;
 
 public class LetterManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class LetterManager : MonoBehaviour
     [SerializeField] GameObject Letter;
     [SerializeField] GameObject LetterUI;
     [SerializeField] TextMeshProUGUI Letter_Text;
-
+    [SerializeField] TextMeshProUGUI fromLetter_Text;
 
     private void Update()
     {
@@ -16,8 +17,8 @@ public class LetterManager : MonoBehaviour
         {
             Letter_Active(true);
         }
-    }
 
+    }
 
     public void Letter_Active(bool _Active)
     {
@@ -30,6 +31,7 @@ public class LetterManager : MonoBehaviour
         {
             int MissionIndex = Random.Range(0, missionData.Length);
             Letter_Text.text = missionData[MissionIndex].text_Letter;
+            fromLetter_Text.text = "From " + missionData[MissionIndex].text_FromLetter + ",";
             LetterUI.SetActive(true);
            
         }
@@ -39,4 +41,6 @@ public class LetterManager : MonoBehaviour
         }
         
     }
+
+   
 }

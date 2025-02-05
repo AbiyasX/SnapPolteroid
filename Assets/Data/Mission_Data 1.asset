@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e83b1afb23fd9404bbdd3cf0716ec8e8, type: 3}
-  m_Name: Mission_protoype
+  m_Name: Mission_Data 1
   m_EditorClassIdentifier: 
   m_NpcHouse: {fileID: 0}
   m_Npc: {fileID: 0}
-  text_Letter: "HELP!! HELP!! May MAlaking TITE SA Bahay KO!! \nWRAHH!!"
+  text_Letter: Hello nakita kong nahulog betlog mo sa kanto.
+  text_FromLetter: Marie Fiona Cortes

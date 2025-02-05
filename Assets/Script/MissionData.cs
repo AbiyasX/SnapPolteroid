@@ -6,6 +6,7 @@ public class Mission_Data : ScriptableObject
 {
     [SerializeField] public GameObject m_NpcHouse;
     [SerializeField] public GameObject m_Npc;
-   
+    
     [SerializeField, TextArea(3, 10)] public string text_Letter;
+    [SerializeField] public string text_FromLetter;
 }
