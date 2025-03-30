@@ -14,6 +14,12 @@ public class InputControl : MonoBehaviour
     [SerializeField] float PlayerSpeed;
     [SerializeField] CinemachineCamera cam;
 
+    [Header("kiki Sprite State")]
+
+    [SerializeField] Sprite idle;
+    [SerializeField] Sprite walk;
+
+
     private CharacterController charController;
     private InputSystem_Actions inputActions;
     private Vector2 inputVector;
@@ -59,6 +65,15 @@ public class InputControl : MonoBehaviour
 
         if (inputVector.x < 0) playerSprite.flipX = true;
         if (inputVector.x > 0) playerSprite.flipX = false;
+
+        if (inputVector.x == 0)
+        {
+            playerSprite.sprite = idle;
+        }
+        else
+        {
+            playerSprite.sprite = walk;
+        }
 
         float targetRotationZ = inputVector.x * -5;
         if (Mathf.Abs(targetRotationZ - lastRotationZ) > 0.1f) // Prevent redundant calls
