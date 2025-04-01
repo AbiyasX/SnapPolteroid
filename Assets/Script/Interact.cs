@@ -27,15 +27,15 @@ public class Interact : MonoBehaviour
     {
         if (PlayerInside && Input.GetKeyDown(KeyCode.E))
         {
-            CameraToggle();
+            Active = !Active;
+            CameraToggle(Active);
         }   
     }
 
-    public void CameraToggle()
+    public void CameraToggle(bool isActive)
     {
-        Active = !Active;
         
-        if (Active)
+        if (isActive)
         {
             Cam.Priority = 1;
             StartCoroutine(WaitForBlendToComplete(false));
@@ -44,6 +44,7 @@ public class Interact : MonoBehaviour
         else
         {
             Cam.Priority = 0;
+            Active = false;
             StartCoroutine(WaitForBlendToComplete(true));
             EndTriggerEvent.Invoke();
         }
@@ -59,6 +60,7 @@ public class Interact : MonoBehaviour
         if (enablePlayer)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            DialogSystem.instance.activateDialog(true);
             playerGameObject.SetActive(true);
         }
         else

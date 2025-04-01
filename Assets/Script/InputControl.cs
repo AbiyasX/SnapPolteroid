@@ -19,15 +19,19 @@ public class InputControl : MonoBehaviour
     [SerializeField] Sprite idle;
     [SerializeField] Sprite walk;
 
-
+    [Header("Status")]
+    [SerializeField]bool canMove = true;
     private CharacterController charController;
     private InputSystem_Actions inputActions;
     private Vector2 inputVector;
     private float lastRotationZ;
     private float initialYPosition;
 
+    public static InputControl Instance;
+
     private void Awake()
     {
+        Instance = this;
         Cursor.lockState = CursorLockMode.Locked;
         initialYPosition = transform.position.y;
         inputActions = new InputSystem_Actions();
@@ -61,6 +65,7 @@ public class InputControl : MonoBehaviour
 
     public void moveHandler()
     {
+        if (!canMove) return;
         Vector3 move = new Vector3(inputVector.x, initialYPosition, inputVector.y).normalized * PlayerSpeed * Time.deltaTime;
 
         if (inputVector.x < 0) playerSprite.flipX = true;
@@ -76,7 +81,7 @@ public class InputControl : MonoBehaviour
         }
 
         float targetRotationZ = inputVector.x * -5;
-        if (Mathf.Abs(targetRotationZ - lastRotationZ) > 0.1f) // Prevent redundant calls
+        if (Mathf.Abs(targetRotationZ - lastRotationZ) > 0.1f) 
         {
             playerTransform.DOLocalRotate(new Vector3(0, 0, targetRotationZ), 0.5f)
                 .SetEase(Ease.OutQuad);
@@ -85,5 +90,10 @@ public class InputControl : MonoBehaviour
 
         charController.Move(move);
         transform.position = new Vector3(transform.position.x, initialYPosition, transform.position.z);
+    }
+
+    public void playerMovement(bool isActive)
+    {
+        canMove = isActive;
     }
 }
