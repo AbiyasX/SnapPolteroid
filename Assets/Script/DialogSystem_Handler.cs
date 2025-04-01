@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogSystem : MonoBehaviour
@@ -26,6 +27,8 @@ public class DialogSystem : MonoBehaviour
     public bool isTyping = false;
     public static DialogSystem instance;
 
+    [SerializeField] UnityEvent onStartDialog;
+    [SerializeField] UnityEvent onExitDialog;
     private void Awake()
     {
         
@@ -57,7 +60,7 @@ public class DialogSystem : MonoBehaviour
             Inventory.SetActive(false);
             InputControl.Instance.playerMovement(false);
             cam.Priority = 1;
-
+            onStartDialog?.Invoke();
             if (diaData.dialogEntries.Length == 0)
             {
                 
@@ -75,6 +78,7 @@ public class DialogSystem : MonoBehaviour
                 Inventory.SetActive(true);
                 InputControl.Instance.playerMovement(true);
                 cam.Priority = 0;
+                onExitDialog?.Invoke();
                 removeDialogData();
                 return;
             }

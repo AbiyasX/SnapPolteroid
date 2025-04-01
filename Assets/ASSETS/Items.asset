@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PolaroidCamera
   itemIcon: {fileID: 21300000, guid: f4f6d1e1fa736e14e922db40373c2ee4, type: 3}
-  itemGameObjcet: {fileID: 919132149155446097, guid: 807c5948ea478684ca813fca95060367, type: 3}
+  itemGameObjcet: {fileID: 919132149155446097, guid: 1e2bbc9c86ad3834893a61ec442d5f63, type: 3}
   itemType: 0
