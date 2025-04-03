@@ -8,12 +8,19 @@ public enum DialogType
     exclaiming
 }
 
+public enum Target
+{
+    Player,
+    Npc
+}
+
 [System.Serializable]
 public struct DialogEntry
 {
     public DialogType type;
+    public Target Target;
     [TextArea(5,20)]
-    public string text;
+    public string text;   
 }
 
 [CreateAssetMenu(fileName = "DialogData", menuName = "DialogMenu/DialogData")]

@@ -4,6 +4,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DialogSystem : MonoBehaviour
 {
@@ -19,13 +20,16 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private Sprite exclaimingTextBox;
     [Header("Dialog Entry")]
     [SerializeField] DialogData diaData;
-    [SerializeField] CinemachineCamera cam;
+    [SerializeField] CinemachineCamera playerCam;
+    [SerializeField] CinemachineCamera npcCam;
     [Header("Status")]
     [SerializeField] bool isActive = false;
     int dialogIndex;
     private Coroutine typingCoroutine;
     public bool isTyping = false;
     public static DialogSystem instance;
+    bool playVFX = false;
+    bool hasNPC;
 
     [SerializeField] UnityEvent onStartDialog;
     [SerializeField] UnityEvent onExitDialog;
@@ -37,10 +41,11 @@ public class DialogSystem : MonoBehaviour
 
     private void Update()
     {
-        if (diaData == null || cam == null)
+        if (diaData == null || playerCam == null)
         {
             return;
         }
+        hasNPC = npcCam != null;
         runDialog(isActive);
     }
     #region runDialog
@@ -59,14 +64,13 @@ public class DialogSystem : MonoBehaviour
             dialogUI.SetActive(true);
             Inventory.SetActive(false);
             InputControl.Instance.playerMovement(false);
-            cam.Priority = 1;
             onStartDialog?.Invoke();
             if (diaData.dialogEntries.Length == 0)
             {
                 
                 Inventory.SetActive(true);
                 dialogUI.SetActive(false);
-                cam.Priority = 0;
+                
                 return;
             }
 
@@ -77,14 +81,34 @@ public class DialogSystem : MonoBehaviour
                 dialogUI.SetActive(false);
                 Inventory.SetActive(true);
                 InputControl.Instance.playerMovement(true);
-                cam.Priority = 0;
+                playerCam.Priority = 0;
+                NpcCamera(0);
                 onExitDialog?.Invoke();
+                playObtainVFX(playVFX);
+                dialogIndex = 0;
                 removeDialogData();
                 return;
             }
 
             DialogEntry selectedEntry = diaData.dialogEntries[dialogIndex];
             StartTypewriter(selectedEntry.text);
+
+            switch (selectedEntry.Target)
+            {
+                case Target.Player:
+                    playerCam.Priority = 1;
+                    NpcCamera(0);
+                    break;
+                case Target.Npc:
+                    NpcCamera(1);
+                    playerCam.Priority = 0;
+                    break;
+                default: 
+                    playerCam.Priority = 0;
+                    npcCam.Priority = 0;
+                    break;
+            }
+
 
             switch (selectedEntry.type)
             {
@@ -142,21 +166,34 @@ public class DialogSystem : MonoBehaviour
     }
     #endregion
 
+    public void NpcCamera(int value)
+    {
+        if (hasNPC) npcCam.Priority = value;
+    }
+
     public void activateDialog(bool active)
     {
         isActive = active;
     }
 
-
     public void removeDialogData()
     {
         diaData = null;
-        cam = null;
+        playerCam = null;
+        npcCam = null;
+        playVFX = false;
     }
 
-    public void addDialogData(DialogData dialogData, CinemachineCamera focusCam)
+    public void playObtainVFX(bool active)
+    {
+        playVFX = active;
+        if (!isActive && playVFX) UI_InventorySystem.instance.VFX();
+    }
+
+    public void addDialogData(DialogData dialogData, CinemachineCamera Player_Camera, CinemachineCamera NPC_Camera)
     {
         diaData = dialogData;
-        cam = focusCam;
+        playerCam = Player_Camera;
+        npcCam = NPC_Camera;
     }
 }

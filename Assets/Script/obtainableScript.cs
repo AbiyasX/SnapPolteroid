@@ -6,6 +6,8 @@ public class obtainableScript : MonoBehaviour
     [SerializeField] private Items assignedItem;
     public UnityEvent OnObtain;
     private Camera mainCam;
+    public bool DestroyScript;
+    public bool DestroyGameObject;
 
     private void Awake()
     {
@@ -23,7 +25,8 @@ public class obtainableScript : MonoBehaviour
                    UI_InventorySystem.instance.additem(assignedItem);
                     if(UI_InventorySystem.instance.isInventoryFull == false)
                     {
-                        Destroy(gameObject);
+                        if (DestroyScript) Destroy(this);
+                        if (DestroyGameObject) Destroy(gameObject);
                         OnObtain?.Invoke();
                     }
                 }

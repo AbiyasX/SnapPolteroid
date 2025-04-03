@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogEntries:
   - type: 0
+    Target: 0
     text: this is my polaroid camera.
   - type: 0
+    Target: 0
     text: i used to to take photo with may family.
   - type: 0
+    Target: 0
     text: its kinda old now.
   - type: 1
+    Target: 0
     text: "hmmm... \nshould I buy a new camera?"
   - type: 2
+    Target: 0
     text: BUT I DONT HAVE ANY MONEY!!! WRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHH!!
