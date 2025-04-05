@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192fa1ddadd41154893245064f4337c4, type: 3}
+  m_Name: GrandmaExplainTheJob
+  m_EditorClassIdentifier: 
+  dialogEntries:
+  - type: 0
+    Target: 0
+    text: "I\u2019m ready for the job!"
+  - type: 0
+    Target: 1
+    text: "I really do appreciate it dear.. My grandson hasn\u2019t\nstopped crying
+      since little Odin passed away."
+  - type: 0
+    Target: 1
+    text: "Kid: \u201CWaaah!\u201D"
+  - type: 0
+    Target: 0
+    text: "Don\u2019t worry kid..! I\u2019ll make sure to get a nice picture\r\nfor
+      you so you don\u2019t have to cry anymore!\u201D\r\n"
+  - type: 0
+    Target: 1
+    text: "Kid: \u201CWaaah!\u201D\r\n"
+  - type: 0
+    Target: 1
+    text: "I told you.. though I hope you\u2019re right that the picture would give
+      him a peace of mind.."
+  - type: 0
+    Target: 1
+    text: "I wanted to say that there\u2019s some things I around the house that
+      should be a part of the picture.."
+  - type: 0
+    Target: 1
+    text: "They\u2019re things that closely related to his pet, and I believe it\u2019d
+      make the picture feel much closer to him."
+  - type: 0
+    Target: 0
+    text: "That\u2019s a great idea! What could these items be?"
+  - type: 0
+    Target: 1
+    text: Well.. starting with this feather.
+  - type: 0
+    Target: 1
+    text: "There should be a book around here that  my grandson loves a lot, but
+      I can\u2019t remember where I had it stored. "
+  - type: 0
+    Target: 1
+    text: "Then, there should be bird seeds in the cabinets at the  kitchen, unfortunately
+      I can\u2019t reach them dear.. "
+  - type: 0
+    Target: 0
+    text: "Don\u2019t worry at all ma\u2019am, I\u2019ll get it for you!"
+  - type: 0
+    Target: 1
+    text: "You\u2019re so sweet young\u2019in..!"
+  - type: 0
+    Target: 0
+    text: "Of course granny, just relax and I\u2019ll take care of  everything for
+      you. "
+  - type: 0
+    Target: 0
+    text: "I\u2019ll be right back with a nice picture!"
+  - type: 0
+    Target: 1
+    text: Thank you dear..
+  - type: 0
+    Target: 1
+    text: 'Kid: Uwaaah.'

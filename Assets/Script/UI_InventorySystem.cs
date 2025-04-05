@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,6 +12,7 @@ public class UI_InventorySystem : MonoBehaviour
     [SerializeField] Sprite CloseBag_sprite;
     [SerializeField] Sprite OpenBag_sprite;
     [SerializeField] GameObject ItemBar;
+    [SerializeField] GameObject inventoryUI;
     [SerializeField] Transform ObtainItemHolder;
     [SerializeField] ParticleSystem ObtainVFX;
 
@@ -26,8 +28,12 @@ public class UI_InventorySystem : MonoBehaviour
     [SerializeField] bool isOpen;
     [SerializeField] bool isPlaying;
     public bool isInventoryFull = false;
-
+    private bool removeItem;
+    [SerializeField] private GameObject currentItem;
     public static UI_InventorySystem instance;
+
+
+    
 
     private void Awake()
     {
@@ -43,7 +49,7 @@ public class UI_InventorySystem : MonoBehaviour
     private void Update()
     {
         UpdateInventoryUI();
-        tooltip.transform.position = Input.mousePosition + new Vector3(10, 300, 0);
+        tooltip.transform.position = Input.mousePosition + new Vector3(120, 230, 0);
     
     }
 
@@ -67,10 +73,17 @@ public class UI_InventorySystem : MonoBehaviour
         isInventoryFull = true;
     }
     
+    public void addVFX(Transform VfxTransform, ParticleSystem Vfx)
+    {
+        ObtainItemHolder = VfxTransform;
+        ObtainVFX = Vfx;
+    }
+
     public void ObtainedItemFX(GameObject itemModel)
     {
-        GameObject item = Instantiate(itemModel, ObtainItemHolder);
-        item.transform.SetParent(ObtainItemHolder);
+        currentItem = Instantiate(itemModel, ObtainItemHolder);
+        currentItem.transform.SetParent(ObtainItemHolder);
+        currentItem.transform.localPosition = Vector3.zero;
     }
 
     public void VFX()
@@ -87,7 +100,12 @@ public class UI_InventorySystem : MonoBehaviour
         yield return new WaitForSeconds(5f);
         ObtainVFX.Stop();
         ObtainItemHolder.DOLocalMoveY(0, 1f);
-        ObtainItemHolder.DOScale(Vector3.one * 0, 0.5f).SetEase(Ease.InBounce);
+        ObtainItemHolder.DOScale(Vector3.one * 0, 0.5f).SetEase(Ease.InBounce).OnComplete(DestroyItem);
+    }
+
+    void DestroyItem()
+    {
+        Destroy(currentItem);
     }
 
     public void UpdateInventoryUI()
@@ -141,22 +159,32 @@ public class UI_InventorySystem : MonoBehaviour
         tooltip.SetActive(false);
     }
 
+    public bool HasItem(string itemName)
+    {
+        foreach (var item in playerItem)
+        {
+            if (item != null && item.itemName == itemName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    public void RemoveItem(Items removeItem)
+    public void RemoveItemByName(string itemName)
     {
         for (int i = 0; i < playerItem.Length; i++)
         {
-            if (playerItem[i] == removeItem)
+            if (playerItem[i] != null && playerItem[i].itemName == itemName)
             {
+                Debug.Log(playerItem[i].itemName + " removed from inventory!");
                 playerItem[i] = null;
                 UpdateInventoryUI();
-                Debug.Log(removeItem.itemName + " removed from inventory!");
-
                 isInventoryFull = !HasEmptySlot();
                 return;
             }
         }
-        Debug.Log("Item not found in inventory!");
+        Debug.Log("Item not found: " + itemName);
     }
 
     private bool HasEmptySlot()
@@ -166,6 +194,11 @@ public class UI_InventorySystem : MonoBehaviour
             if (item == null) return true;
         }
         return false;
+    }
+
+    public void Toggle_InvUI(bool active)
+    {
+        inventoryUI.SetActive(active);
     }
 
     public void Toggle_Inventory()

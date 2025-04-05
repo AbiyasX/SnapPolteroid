@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eaec155b2122ef840bc1414faf38fc54, type: 3}
-  m_Name: Items
+  m_Name: Book
   m_EditorClassIdentifier: 
-  itemName: PolaroidCamera
-  itemIcon: {fileID: 21300000, guid: f4f6d1e1fa736e14e922db40373c2ee4, type: 3}
-  itemGameObjcet: {fileID: 919132149155446097, guid: 1e2bbc9c86ad3834893a61ec442d5f63, type: 3}
-  itemDescription: A Vintage Camera.
+  itemName: Book
+  itemIcon: {fileID: 21300000, guid: d160c5fdf71eeb0448d69b3e65eea12f, type: 3}
+  itemGameObjcet: {fileID: 919132149155446097, guid: c8d047bf7650d60428612e017c2f117d, type: 3}
+  itemDescription: 'Kid''s favorite book
+
+'
   itemType: 0

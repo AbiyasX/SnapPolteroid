@@ -10,7 +10,6 @@ public class InteractNPC : MonoBehaviour
     private GameObject playerGameObject;
 
     [SerializeField] UnityEvent StartTriggerEvent = new UnityEvent();
-    [SerializeField] UnityEvent EndTriggerEvent = new UnityEvent();
 
     private void Awake()
     {
@@ -22,27 +21,19 @@ public class InteractNPC : MonoBehaviour
     {
         if (PlayerInside && Input.GetKeyDown(KeyCode.E))
         {
-            Active = !Active;
-            toggleNPC(Active);
+            toggleNPC();
         }
     }
 
-    public void  toggleNPC(bool isActive)
+    public void  toggleNPC()
     {
-
-        if (isActive)
-        {
-
-            StartTriggerEvent.Invoke();
-        }
-        else
-        {
-            Active = false;
-            EndTriggerEvent.Invoke();
-        }
+        StartTriggerEvent.Invoke();
     }
 
-    
+    public void isPlayerInside(bool active)
+    {
+        PlayerInside = active;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

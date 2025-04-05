@@ -15,16 +15,15 @@ MonoBehaviour:
   dialogEntries:
   - type: 0
     Target: 0
-    text: this is my polaroid camera.
+    text: This is it! My trusty camera!
   - type: 0
     Target: 0
-    text: i used to to take photo with may family.
+    text: "I haven\u2019t used it in a while actually, so I\u2019m a little rusty.\r\nI
+      hope it still works\u2026\r\n"
   - type: 0
     Target: 0
-    text: its kinda old now.
-  - type: 1
+    text: "I\u2019m really worried that I\u2019ve been neglecting it,\r\nespecially
+      since my grandfather gave it to me as a gift.\r\n\r\n"
+  - type: 0
     Target: 0
-    text: "hmmm... \nshould I buy a new camera?"
-  - type: 2
-    Target: 0
-    text: BUT I DONT HAVE ANY MONEY!!! WRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHH!!
+    text: "Okay. She\u2019s still got some film in her, so I should be good to go!\n"

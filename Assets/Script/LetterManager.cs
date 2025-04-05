@@ -10,15 +10,11 @@ public class LetterManager : MonoBehaviour
     [SerializeField] GameObject LetterUI;
     [SerializeField] TextMeshProUGUI Letter_Text;
     [SerializeField] TextMeshProUGUI fromLetter_Text;
-
-    private void Update()
+    public void changeScene(int sceneIndex)
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Letter_Active(true);
-        }
-
+        GameManagerScript.instance.LoadSceneByIndex(sceneIndex);
     }
+    
 
     public void Letter_Active(bool _Active)
     {

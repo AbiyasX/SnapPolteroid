@@ -22,15 +22,21 @@ public class obtainableScript : MonoBehaviour
             {
                 if (hit.transform == transform) 
                 {
-                   UI_InventorySystem.instance.additem(assignedItem);
-                    if(UI_InventorySystem.instance.isInventoryFull == false)
-                    {
-                        if (DestroyScript) Destroy(this);
-                        if (DestroyGameObject) Destroy(gameObject);
-                        OnObtain?.Invoke();
-                    }
+                    ObtainItem();
                 }
             }
+        }
+    }
+
+    public void ObtainItem()
+    {
+        UI_InventorySystem.instance.additem(assignedItem);
+        if (UI_InventorySystem.instance.isInventoryFull == false)
+        {
+            if (DestroyScript) Destroy(this);
+            if (DestroyGameObject) Destroy(gameObject);
+            DialogSystem.instance.playObtainVFX(true);
+            OnObtain?.Invoke();
         }
     }
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83b1afb23fd9404bbdd3cf0716ec8e8, type: 3}
+  m_Name: BirdHouseMission
+  m_EditorClassIdentifier: 
+  sceneIndex: 2
+  text_Letter: "Hello dearie, I was walking to the market with my wee flockling when
+    we happen to\r\ncome across one of your adverts\u2026 Are you still doing this
+    job? I would like to \r\nrequest that you come over to my nest to create a heartwarming
+    memory for my grandchild.\r\n\r\nYou see, his pet has passed away recently and
+    he hasn\u2019t stopped weeping ever since\u2026\r\nI believe a memory of his
+    loved one would really warm his heart.\r\n"
+  text_FromLetter: 'Grammy Plum '

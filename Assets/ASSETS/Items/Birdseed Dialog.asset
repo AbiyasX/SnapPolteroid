@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192fa1ddadd41154893245064f4337c4, type: 3}
+  m_Name: Birdseed Dialog
+  m_EditorClassIdentifier: 
+  dialogEntries:
+  - type: 1
+    Target: 0
+    text: It's pretty high up for Granny to reach.
+  - type: 1
+    Target: 0
+    text: Well i was able to reach it just enougt to grab it.
